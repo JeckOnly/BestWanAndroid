@@ -36,11 +36,11 @@ import com.example.wanandroid.ui.theme.COLOR_SELECTED
 @ExperimentalAnimationApi
 @Composable
 fun AnimateAppBottomBar(
-    articlesLazyColumnState: LazyListState,
+    visibility: Boolean,
     animateBackCol: Color
 ) {
     AnimatedVisibility(
-        visible = !articlesLazyColumnState.isScrollInProgress,
+        visible = visibility,
         enter = slideInVertically(
             initialOffsetY = {
                 it

@@ -12,6 +12,6 @@ import com.example.wanandroid.feature_homearticle.domain.model.article_collect.A
 sealed class ArticlesEvent {
     data class UpOrDownPage(val upOrDown: Int): ArticlesEvent()
     data class InsertArticleCollect(val articleCollect: ArticleCollect):ArticlesEvent()
-    object QueryAllArticleCollect: ArticlesEvent()
+    data class DeleteArticleCollect(val articleCollect: ArticleCollect):ArticlesEvent()
     data class ClickBottomBar(val bottomBarScreen: BottomBarScreen):ArticlesEvent()
 }

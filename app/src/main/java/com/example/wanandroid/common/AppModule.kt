@@ -61,7 +61,8 @@ object AppModule {
             GetBannerUseCase(repo),
             GetTopArticlesUseCase(repo),
             InsertArticleCollectUseBase(repo),
-            LoadArticleCollectUseBase(repo)
+            LoadArticleCollectUseBase(repo),
+            DeleteArticleCollectUseCase(repo)
         )
     }
 }

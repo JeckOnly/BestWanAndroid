@@ -25,6 +25,7 @@ import com.example.wanandroid.feature_homearticle.presentation.util.whenDragColu
 import com.example.wanandroid.ui.theme.CollectScreenBackColor
 import com.example.wanandroid.ui.theme.HomeScreenBackColor
 import com.google.accompanist.pager.ExperimentalPagerApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 /**
@@ -35,6 +36,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
  */
 private const val TAG = "MainScreen.kt"
 
+@ExperimentalCoroutinesApi
 @ExperimentalFoundationApi
 @ExperimentalCoilApi
 @ExperimentalPagerApi
@@ -52,20 +54,25 @@ fun MainScreen() {
         )
     )
     val articlesLazyColumnState = rememberLazyListState()
+    val collectLazyState = rememberLazyListState()
 
     Scaffold(
         backgroundColor = animateBackCol,
         bottomBar = {
-            AnimateAppBottomBar(articlesLazyColumnState, animateBackCol)
+            AnimateAppBottomBar(
+                !(articlesLazyColumnState.isScrollInProgress || collectLazyState.isScrollInProgress),
+                animateBackCol
+            )
         }
     ) {
-        Column {
-            if (viewModel.bottomBarScreen == BottomBarScreen.HomeScreen) {
+        //给主画面的切换加一些淡入淡出的动画
+        Crossfade(targetState = viewModel.bottomBarScreen) {
+            if (it == BottomBarScreen.HomeScreen) {
                 HomeScreen(topArticleFold, viewModel, articlesLazyColumnState) {
                     topArticleFold = !topArticleFold
                 }
-            } else if (viewModel.bottomBarScreen == BottomBarScreen.CollectScreen) {
-                CollectScreen()
+            } else if (it == BottomBarScreen.CollectScreen) {
+                CollectScreen(collectLazyState)
             }
         }
     }

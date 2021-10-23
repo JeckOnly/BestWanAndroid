@@ -16,6 +16,8 @@ import com.example.wanandroid.feature_homearticle.presentation.util.BottomBarScr
 import com.example.wanandroid.feature_homearticle.presentation.util.Direction
 import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -67,6 +69,7 @@ class MainViewModel @Inject constructor(
     }
 
     //处理各种viewmodel会面对的事件
+    @ExperimentalCoroutinesApi
     fun onEvent(event: ArticlesEvent) {
         when (event) {
             is ArticlesEvent.UpOrDownPage -> {
@@ -81,6 +84,11 @@ class MainViewModel @Inject constructor(
             is ArticlesEvent.InsertArticleCollect -> {
                 viewModelScope.launch {
                     mainUseCase.insertArticleCollectUseBase(event.articleCollect)//把文章插入收藏的数据库
+                }
+            }
+            is ArticlesEvent.DeleteArticleCollect -> {
+                viewModelScope.launch(start = CoroutineStart.ATOMIC) {
+                    mainUseCase.deleteArticleCollectUseCase(event.articleCollect)//删除收藏的文章
                 }
             }
             is ArticlesEvent.ClickBottomBar -> {
