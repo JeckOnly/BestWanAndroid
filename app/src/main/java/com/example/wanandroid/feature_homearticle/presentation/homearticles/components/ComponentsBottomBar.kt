@@ -66,7 +66,7 @@ fun AppBottomBar(color: Color) {
             .fillMaxWidth()
             .background(color)
             .padding(top = 4.dp, bottom = 4.dp)
-            .height(BOTTOM_ICON_SIZE * 1.2f)
+            .height(BOTTOM_ICON_SIZE * 1.5f)
     )
 }
 
@@ -87,7 +87,7 @@ fun MyBottomBar(screens: List<BottomBarScreen>, modifier: Modifier = Modifier) {
             AnimatableIcon(
                 resId = screen.id,
                 iconSize = BOTTOM_ICON_SIZE,
-                scale = if (viewModel.bottomBarScreen == screen) 1.2f else 1f,
+                scale = if (viewModel.bottomBarScreen == screen) 1.5f else 1f,
                 color = if (viewModel.bottomBarScreen == screen) COLOR_SELECTED else screen.color
             ) {
                 viewModel.onEvent(ArticlesEvent.ClickBottomBar(screen))

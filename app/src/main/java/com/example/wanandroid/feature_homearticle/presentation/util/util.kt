@@ -10,6 +10,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.VisibilityThreshold
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,12 +47,12 @@ fun whenDragColumn(
     val (x, y) = dragAmount
     when {
         x > 0 -> {
-            if (x > 60 && viewModel.state.value.page > 0) viewModel.onEvent(
+            if (x > 40 && viewModel.state.value.page > 0) viewModel.onEvent(
                 ArticlesEvent.UpOrDownPage(-1)
             )
         }
         x < 0 -> {
-            if (x < -60) viewModel.onEvent(ArticlesEvent.UpOrDownPage(1))
+            if (x < -40) viewModel.onEvent(ArticlesEvent.UpOrDownPage(1))
         }
     }
 }
@@ -85,27 +86,30 @@ fun columnSlideAnim(direction: Direction): AnimatedContentScope<List<Article>>.(
             stiffness = 800f,
             visibilityThreshold = IntOffset.VisibilityThreshold
         )
+        val tween = tween<IntOffset>(
+            durationMillis = 500
+        )
         if (direction == Direction.Right)
             slideIn(
                 initialOffset = {
                     IntOffset(it.width, 0)
                 },
-                animationSpec = spring
+                animationSpec = tween
             ) with slideOut(
                 targetOffset = {
                     IntOffset(-it.width, 0)
                 },
-                animationSpec = spring
+                animationSpec = tween
             ) else slideIn(
             initialOffset = {
                 IntOffset(-it.width, 0)
             },
-            animationSpec = spring
+            animationSpec = tween
         ) with slideOut(
             targetOffset = {
                 IntOffset(it.width, 0)
             },
-            animationSpec = spring
+            animationSpec = tween
         )
     }
 

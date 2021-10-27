@@ -51,8 +51,8 @@ fun ArticlesColumn(modifier: Modifier = Modifier, articlesLazyColumnState: LazyL
 
     val context = LocalContext.current
 
-    Card(modifier = modifier) {
-        LazyColumn(state = articlesLazyColumnState) {
+    //Card(modifier = modifier) {
+        LazyColumn(modifier = modifier, state = articlesLazyColumnState) {
             items(items = viewModel.state.value.articles) {
                 ArticleItem(
                     article = it,
@@ -67,7 +67,7 @@ fun ArticlesColumn(modifier: Modifier = Modifier, articlesLazyColumnState: LazyL
                 Spacer(modifier = Modifier.height(BOTTOM_ICON_SIZE * 1.2f))
             }
         }
-    }
+    //}
 }
 
 

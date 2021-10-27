@@ -79,6 +79,7 @@ fun HomeScreen(
                 .fillMaxWidth()
         )
 
+
         AnimatedContent(
             targetState = viewModel.state.value.articles,
             transitionSpec = columnSlideAnim(viewModel.getDirection())

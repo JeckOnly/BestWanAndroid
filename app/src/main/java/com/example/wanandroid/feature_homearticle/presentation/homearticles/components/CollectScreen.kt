@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -26,6 +27,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.StampedPathEffectStyle.Companion.Rotate
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.inset
 import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.*
@@ -95,13 +97,11 @@ fun CollectScreen(lazyListState: LazyListState) {
                         },
                         onDragEnd = {
                             //结束拖动
-                            Log.d(TAG, "trashbinY——$trashbinY")
-                            Log.d(TAG, "itemY——${offset.y + itemOriginY}")
                             if (!inTrashArea)
                                 offset = Offset.Zero  //归位
                             else {
                                 viewModel.onEvent(ArticlesEvent.DeleteArticleCollect(it))//删除这篇文章
-                                offset = Offset.Zero  //归位
+                                //offset = Offset.Zero  //归位
                                 refresh = !refresh //刷新
                             }
                             drag = false
@@ -148,7 +148,9 @@ fun CollectScreen(lazyListState: LazyListState) {
     }
 }
 
-
+/**
+ * 函数签名十分不合理，不便于复用
+ */
 @Composable
 private fun CollectArticleItem(
     context: Context,
@@ -264,31 +266,16 @@ fun DragGestureDemo() {
     }
 }
 
-
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewCanvas() {
-    val OPEN_ANGLE = 120f
-    Canvas(modifier = Modifier.size(500.dp)) {
-        val px = 150.dp.toPx()
-        val dashWidth = 2.dp.toPx()
-        val dashHeight = 10.dp.toPx()
-        val dash = Path()
-        dash.addRect(Rect(Offset(0f, 0f), Size(dashWidth, dashHeight)))
-        val arcPath = Path()
-        arcPath.addArc(
-            Rect(
-                Offset(size.width / 2 - px, size.height / 2 - px),
-                Size(2 * px, 2 * px)
-            ), 90 + OPEN_ANGLE / 2, 360 - OPEN_ANGLE
-        )
-
-        drawPath(arcPath, Color.Black, style = Stroke(3.dp.toPx()))
-        drawPath(
-            arcPath,
-            Color.Black,
-            style = Stroke(pathEffect = PathEffect.stampedPathEffect(dash, 50f, 0f, Rotate))
-        )
+    Column() {
+        Text(text = "THIS IS A GOOD DAY", color = Color(0xffFA3421))
+        Text(text = "by Jeck", color = Color(0xff00AD4D), modifier = Modifier.padding(start=10.dp))
+        Text(text = "Another Row", color = Color(0xff31E322), modifier = Modifier.background(color = Color(0xff2CE0E6)))
     }
+
+    
 }
+
 
