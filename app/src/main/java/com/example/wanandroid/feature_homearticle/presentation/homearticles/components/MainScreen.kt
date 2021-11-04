@@ -1,5 +1,6 @@
 package com.example.wanandroid.feature_homearticle.presentation.homearticles.components
 
+import android.util.Log
 import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.TweenSpec
@@ -42,7 +43,7 @@ private const val TAG = "MainScreen.kt"
 @ExperimentalPagerApi
 @ExperimentalAnimationApi
 @Composable
-fun MainScreen() {
+fun MainScreen(toSearchScreen: ()->Unit) {
     val viewModel: MainViewModel = hiltViewModel()
     var topArticleFold: Boolean by remember { mutableStateOf(true) }
     val animateBackCol by //背景颜色的动画改变
@@ -63,6 +64,9 @@ fun MainScreen() {
                 !(articlesLazyColumnState.isScrollInProgress || collectLazyState.isScrollInProgress),
                 animateBackCol
             )
+        },
+        topBar = {
+            MainScreenTopBar(modifier = Modifier.height(45.dp), onClickSearch = toSearchScreen)
         }
     ) {
         //给主画面的切换加一些淡入淡出的动画

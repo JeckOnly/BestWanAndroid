@@ -1,20 +1,16 @@
 package com.example.wanandroid.feature_homearticle.presentation.homearticles.components
 
-import android.util.Log
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wanandroid.feature_homearticle.domain.model.article.Article
 import com.example.wanandroid.feature_homearticle.domain.model.article_collect.ArticleCollect
 import com.example.wanandroid.feature_homearticle.domain.model.banner.Banner
-import com.example.wanandroid.feature_homearticle.domain.use_case.GetArticlesUseCase
-import com.example.wanandroid.feature_homearticle.domain.use_case.GetBannerUseCase
 import com.example.wanandroid.feature_homearticle.domain.use_case.MainUseCase
 import com.example.wanandroid.feature_homearticle.presentation.util.ArticlesEvent
 import com.example.wanandroid.feature_homearticle.presentation.util.ArticlesState
 import com.example.wanandroid.feature_homearticle.presentation.util.BottomBarScreen
 import com.example.wanandroid.feature_homearticle.presentation.util.Direction
-import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -48,7 +44,7 @@ class MainViewModel @Inject constructor(
     private var _bottomBarScreen: BottomBarScreen by mutableStateOf(BottomBarScreen.HomeScreen)//隐藏
     val bottomBarScreen: BottomBarScreen get() = _bottomBarScreen//暴露
 
-    val articleCollect: Flow<List<ArticleCollect>> = mainUseCase.loadArticleCollectUseBase()
+    val articleCollect: Flow<List<ArticleCollect>> = mainUseCase.loadArticleCollectUseCase()
     private var direction = Direction.Right
 
     //创建的时候加载第一页的文章、banner、置顶文章
@@ -83,7 +79,7 @@ class MainViewModel @Inject constructor(
             }
             is ArticlesEvent.InsertArticleCollect -> {
                 viewModelScope.launch {
-                    mainUseCase.insertArticleCollectUseBase(event.articleCollect)//把文章插入收藏的数据库
+                    mainUseCase.insertArticleCollectUseCase(event.articleCollect)//把文章插入收藏的数据库
                 }
             }
             is ArticlesEvent.DeleteArticleCollect -> {

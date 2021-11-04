@@ -11,7 +11,7 @@ data class MainUseCase(
     val getArticlesUseCase: GetArticlesUseCase,
     val getBannerUseCase: GetBannerUseCase,
     val getTopArticlesUseCase: GetTopArticlesUseCase,
-    val insertArticleCollectUseBase: InsertArticleCollectUseBase,
-    val loadArticleCollectUseBase: LoadArticleCollectUseBase,
+    val insertArticleCollectUseCase: InsertArticleCollectUseCase,
+    val loadArticleCollectUseCase: LoadArticleCollectUseCase,
     val deleteArticleCollectUseCase: DeleteArticleCollectUseCase
 )

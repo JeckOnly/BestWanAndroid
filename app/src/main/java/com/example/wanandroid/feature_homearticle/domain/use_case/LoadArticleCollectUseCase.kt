@@ -2,20 +2,17 @@ package com.example.wanandroid.feature_homearticle.domain.use_case
 
 import com.example.wanandroid.feature_homearticle.data.repository.MainRepository
 import com.example.wanandroid.feature_homearticle.domain.model.article.Article
-import com.example.wanandroid.feature_homearticle.domain.model.article_collect.ArticleCollect
 import kotlinx.coroutines.flow.Flow
 
 
 /**
- *@className InsertArticleCollectUseBase
+ *@className LoadArticleCollectUseBase
  *@Author xiejunyan
  *@Date 2021/10/14
- *@Description 用于插入收藏文章的use case
+ *@Description 用于加载collect article的use base
  */
-class InsertArticleCollectUseBase (
+class LoadArticleCollectUseCase (
     private val repository: MainRepository
 ) {
-    suspend operator fun invoke(articleCollect: ArticleCollect){
-        repository.insertArticleCollect(articleCollect)
-    }
+    operator fun invoke() = repository.loadArticleCollect()
 }

@@ -16,11 +16,11 @@ val whit150 = Color.White.copy(alpha = .15f)
 val green900 = Color(0xFF2d3b2d)
 val green300 = Color(0xFFb8c9b8)
 
-val HomeScreenBackColor = Color(0xffffe5f3)
-val CollectScreenBackColor = Color(0xffccffef)
+val HomeScreenBackColor = Color(0xffccffef)
+val CollectScreenBackColor = Color(0xffffe5f3)
 
-val HomeScreenBottomBar = Color(0xffcc99ff)
-val CollectScreenBottomBar = Color(0xff00e69c)
+val HomeScreenBottomBar = Color(0xff00e69c)
+val CollectScreenBottomBar = Color(0xffcc99ff)
 val COLOR_SELECTED = Color(0xff496DE2)
 
 val articleCollectItemBackColor = Color(0xffdfdfd2)

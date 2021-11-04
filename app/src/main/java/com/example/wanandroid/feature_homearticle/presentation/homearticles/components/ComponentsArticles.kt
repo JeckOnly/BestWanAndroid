@@ -139,17 +139,7 @@ private fun CollectIcon(
             .size(40.dp)
             .clickable {
                 showMenu.value = false
-                val (author, shareUser, title, _, link, chapterName, superChapterName, id)
-                        = article
-                val articleCollect = ArticleCollect(
-                    author=author,
-                    shareUser=shareUser,
-                    title=title,
-                    link=link,
-                    chapterName=chapterName,
-                    superChapterName=superChapterName,
-                    id=id
-                )
+                val articleCollect = article.toArticleCollect()
                 viewModel.onEvent(
                     ArticlesEvent.InsertArticleCollect(articleCollect)//发送插入文章这个事件
                 )

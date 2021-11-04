@@ -11,7 +11,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
 import com.example.wanandroid.feature_homearticle.presentation.homearticles.components.MainScreen
+import com.example.wanandroid.feature_search.presentation.SearchScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 
 
 /**
@@ -20,6 +23,8 @@ import com.google.accompanist.pager.ExperimentalPagerApi
  *@Description 掌管整个app的navigation
  */
 
+@InternalCoroutinesApi
+@ExperimentalCoroutinesApi
 @ExperimentalFoundationApi
 @ExperimentalCoilApi
 @ExperimentalPagerApi
@@ -32,7 +37,11 @@ fun MyApp() {
     NavHost(navController = navController, startDestination = Destinations.HomeScreen) {
 
         composable(Destinations.HomeScreen) {
-            MainScreen()
+            MainScreen(actions.toSearchScreen)
+        }
+
+        composable(Destinations.SearchScreen) {
+            SearchScreen(actions.toHomeScreen)
         }
 
     }

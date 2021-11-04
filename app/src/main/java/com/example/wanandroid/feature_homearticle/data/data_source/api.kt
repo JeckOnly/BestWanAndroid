@@ -4,7 +4,9 @@ import com.example.wanandroid.feature_homearticle.domain.model.article.OutSide1
 import com.example.wanandroid.feature_homearticle.domain.model.article_top.OutSide4
 import com.example.wanandroid.feature_homearticle.domain.model.banner.OutSide3
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface Api {
     @GET("article/list/{page}/json")
@@ -15,4 +17,11 @@ interface Api {
 
     @GET("article/top/json")
     suspend fun getTopArticles(): OutSide4
+
+    /**
+     * @param page 当前查询的页码
+     * @param key 用于查询的关键字
+     */
+    @POST("article/query/{page}/json")
+    suspend fun search(@Path("page") page: Int, @Query("k") key: String): OutSide1
 }

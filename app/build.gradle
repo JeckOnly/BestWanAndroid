@@ -93,7 +93,6 @@ dependencies {
 
     //在android上使用协程
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
-
     //使用协程
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
 

@@ -10,9 +10,13 @@ import com.example.wanandroid.common.MyApp
 import com.example.wanandroid.ui.theme.WanAndroidTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @ExperimentalCoroutinesApi
+    @InternalCoroutinesApi
     @ExperimentalFoundationApi
     @ExperimentalCoilApi
     @ExperimentalPagerApi
