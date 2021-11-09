@@ -46,17 +46,14 @@ import com.example.wanandroid.R
 @ExperimentalComposeUiApi
 @Composable
 fun SearchScreenTopBar(
+    interactionSource: MutableInteractionSource,//用于检测点击
     modifier: Modifier = Modifier,
     onClickSearchText: (text: String) -> Unit = {},
     onClickBackIcon: () -> Unit = {}
 ) {
     var text by remember { mutableStateOf("") }
-    val interactionSource = remember { MutableInteractionSource() }
-    val isFocused by interactionSource.collectIsFocusedAsState()//是否搜索框被点击
     val focusRequester = FocusRequester()//用于搜索框的点击请求
-    val localFocusManager = LocalFocusManager.current//用于清除搜索框焦点
 
-    Log.d("SearchScreenTopBar", "$isFocused")
     Row(modifier = modifier) {
         Icon(
             painter = painterResource(id = R.drawable.ic_back),
@@ -103,7 +100,6 @@ fun SearchScreenTopBar(
                         keyboardActions = KeyboardActions(
                             onSearch = {
                                 onClickSearchText(text)
-                                localFocusManager.clearFocus()//清除搜索框焦点
                             }
                         ),
                         interactionSource = interactionSource
@@ -122,7 +118,6 @@ fun SearchScreenTopBar(
                 modifier = Modifier
                     .clickable {
                         onClickSearchText(text)
-                        localFocusManager.clearFocus()//清除搜索框焦点
                     },
                 fontSize = 17.sp
             )

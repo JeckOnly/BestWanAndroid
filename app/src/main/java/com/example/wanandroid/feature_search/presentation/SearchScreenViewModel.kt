@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wanandroid.feature_homearticle.domain.model.article.Article
 import com.example.wanandroid.feature_homearticle.domain.use_case.MainUseCase
+import com.example.wanandroid.feature_search.domain.model.HotKey
 import com.example.wanandroid.feature_search.domain.use_case.SearchScreenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -43,6 +44,22 @@ class SearchScreenViewModel @Inject constructor(
     private var page = 0
 
     val searchResult: MutableList<Article> = mutableStateListOf()
+
+    private var _hotKeys: MutableState<List<HotKey>> = mutableStateOf(emptyList())
+    val hotKeys get() = _hotKeys
+
+    init {
+        viewModelScope.launch {
+            _hotKeys.value = searchScreenUseCase.getHotKeyUseCase().plus(//获取api的数据加上自己造的一些热词
+                arrayOf(
+                    HotKey(name = "Jetpack compose"),
+                    HotKey(name = "kotlin"),
+                    HotKey(name = "Java"),
+                    HotKey(name = "Android 12")
+                )
+            )
+        }
+    }
 
     /**
      * 处理收到的各种界面传来的事件

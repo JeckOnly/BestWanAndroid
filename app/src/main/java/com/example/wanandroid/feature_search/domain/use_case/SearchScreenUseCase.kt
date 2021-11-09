@@ -11,5 +11,6 @@ import com.example.wanandroid.feature_homearticle.domain.use_case.InsertArticleC
  */
 data class SearchScreenUseCase (
     val searchUseCase: SearchUseCase,
-    val insertArticleCollectUseCase: InsertArticleCollectUseCase
+    val insertArticleCollectUseCase: InsertArticleCollectUseCase,
+    val getHotKeyUseCase: GetHotKeyUseCase
 )

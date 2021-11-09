@@ -74,6 +74,12 @@ class MainRepository(private val dao: ArticleCollectDao) {
         }.flowOn(Dispatchers.IO)
     }
 
+    /**
+     * 查询搜索热词
+     * @return List<HotKey>
+     */
+    suspend fun getHotKey() = service.getHotKey().data
+
     suspend fun insertArticleCollect(articleCollect: ArticleCollect) =
         dao.insertArticleCollect(articleCollect)
 

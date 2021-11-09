@@ -6,6 +6,7 @@ import com.example.wanandroid.feature_homearticle.data.data_source.ArticleCollec
 import com.example.wanandroid.feature_homearticle.data.data_source.ArticleCollectDatabase.Companion.COLLECT_DATABASE_NAME
 import com.example.wanandroid.feature_homearticle.data.repository.MainRepository
 import com.example.wanandroid.feature_homearticle.domain.use_case.*
+import com.example.wanandroid.feature_search.domain.use_case.GetHotKeyUseCase
 import com.example.wanandroid.feature_search.domain.use_case.SearchScreenUseCase
 import com.example.wanandroid.feature_search.domain.use_case.SearchUseCase
 import dagger.Module
@@ -73,7 +74,8 @@ object AppModule {
     fun provideSearchScreenUseCase(@Named("MainRepository") repo: MainRepository): SearchScreenUseCase {
         return SearchScreenUseCase(
             SearchUseCase(repo),
-            InsertArticleCollectUseCase(repo)
+            InsertArticleCollectUseCase(repo),
+            GetHotKeyUseCase(repo)
         )
     }
 
