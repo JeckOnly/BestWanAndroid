@@ -44,7 +44,6 @@ import com.airbnb.lottie.LottieDrawable
 import com.example.wanandroid.R
 import com.example.wanandroid.feature_homearticle.presentation.util.LottieLoadingView
 import com.example.wanandroid.feature_homearticle.presentation.util.openLinkBrowser
-import com.example.wanandroid.ui.theme.roundedCornerDp
 
 
 /**
@@ -97,7 +96,7 @@ fun HorizontalPagerWithOffsetTransition(modifier: Modifier = Modifier) {
                         fraction = 1f - pageOffset.coerceIn(0f, 1f)
                     )
                 }
-                .clip(RoundedCornerShape(roundedCornerDp))
+                .clip(RoundedCornerShape(16.dp))
         ) {
             Box {
                 val painter = rememberImagePainter(

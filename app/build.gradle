@@ -133,4 +133,6 @@ dependencies {
 
     //com.android.application插件
     compileOnly 'com.android.tools.build:gradle:7.0.2'
+
+    implementation 'com.google.accompanist:accompanist-insets:0.21.2-beta'
 }

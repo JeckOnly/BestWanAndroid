@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.ui.ExperimentalComposeUiApi
 import coil.annotation.ExperimentalCoilApi
 import com.example.wanandroid.common.MyApp
 import com.example.wanandroid.ui.theme.WanAndroidTheme
@@ -15,6 +16,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @ExperimentalComposeUiApi
     @ExperimentalCoroutinesApi
     @InternalCoroutinesApi
     @ExperimentalFoundationApi

@@ -33,9 +33,6 @@ import com.example.wanandroid.feature_homearticle.domain.model.article_collect.A
 import com.example.wanandroid.feature_homearticle.domain.model.banner.Banner
 import com.example.wanandroid.feature_homearticle.presentation.util.ArticlesEvent
 import com.example.wanandroid.feature_homearticle.presentation.util.openLinkBrowser
-import com.example.wanandroid.ui.theme.BOTTOM_ICON_SIZE
-import com.example.wanandroid.ui.theme.articleItemRoundedDp
-import com.example.wanandroid.ui.theme.roundedCornerDp
 
 
 /**
@@ -64,7 +61,7 @@ fun ArticlesColumn(modifier: Modifier = Modifier, articlesLazyColumnState: LazyL
                 Spacer(modifier = Modifier.height(10.dp))
             }
             item {
-                Spacer(modifier = Modifier.height(BOTTOM_ICON_SIZE * 1.2f))
+                Spacer(modifier = Modifier.height(36.dp))
             }
         }
     //}

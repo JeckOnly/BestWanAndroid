@@ -14,13 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.example.wanandroid.R
 import com.example.wanandroid.feature_homearticle.presentation.util.columnSlideAnim
 import com.example.wanandroid.feature_homearticle.presentation.util.whenDragColumn
-import com.example.wanandroid.ui.theme.BOTTOM_ICON_SIZE
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 

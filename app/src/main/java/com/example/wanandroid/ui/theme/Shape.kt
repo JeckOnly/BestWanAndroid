@@ -9,9 +9,3 @@ val Shapes = Shapes(
     medium = RoundedCornerShape(4.dp),
     large = RoundedCornerShape(16.dp)
 )
-
-val roundedCornerDp = 16.dp
-
-val articleItemRoundedDp = 8.dp
-
-val BOTTOM_ICON_SIZE = 24.dp

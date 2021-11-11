@@ -1,6 +1,9 @@
 package com.example.wanandroid.feature_homearticle.presentation.homearticles.components
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wanandroid.feature_homearticle.domain.model.article.Article
@@ -9,7 +12,6 @@ import com.example.wanandroid.feature_homearticle.domain.model.banner.Banner
 import com.example.wanandroid.feature_homearticle.domain.use_case.MainUseCase
 import com.example.wanandroid.feature_homearticle.presentation.util.ArticlesEvent
 import com.example.wanandroid.feature_homearticle.presentation.util.ArticlesState
-import com.example.wanandroid.feature_homearticle.presentation.util.BottomBarScreen
 import com.example.wanandroid.feature_homearticle.presentation.util.Direction
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineStart
@@ -40,9 +42,6 @@ class MainViewModel @Inject constructor(
 
     private var _topArticle: List<Article> by mutableStateOf(emptyList())//隐藏
     val topArticle: List<Article> get() = _topArticle//暴露
-
-    private var _bottomBarScreen: BottomBarScreen by mutableStateOf(BottomBarScreen.HomeScreen)//隐藏
-    val bottomBarScreen: BottomBarScreen get() = _bottomBarScreen//暴露
 
     val articleCollect: Flow<List<ArticleCollect>> = mainUseCase.loadArticleCollectUseCase()
     private var direction = Direction.Right
@@ -86,9 +85,6 @@ class MainViewModel @Inject constructor(
                 viewModelScope.launch(start = CoroutineStart.ATOMIC) {
                     mainUseCase.deleteArticleCollectUseCase(event.articleCollect)//删除收藏的文章
                 }
-            }
-            is ArticlesEvent.ClickBottomBar -> {
-               if(event.bottomBarScreen != _bottomBarScreen) _bottomBarScreen = event.bottomBarScreen//不等于就改变
             }
         }
     }

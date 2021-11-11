@@ -4,6 +4,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,6 +24,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
  *@Description 掌管整个app的navigation
  */
 
+@ExperimentalComposeUiApi
 @InternalCoroutinesApi
 @ExperimentalCoroutinesApi
 @ExperimentalFoundationApi
